@@ -1,0 +1,45 @@
+version: "3"
+services:
+  app:
+    # replace username/repo:tag with your name and image details
+    image: survey/app:latest
+    environment:
+      HOST: 0.0.0.0
+      NODE_ENV: production
+    ports:
+      - "3000:3000"
+    networks:
+      - webnet
+    depends_on:
+      - postgres
+  pdf:
+    # replace username/repo:tag with your name and image details
+    image: survey/pdf:latest
+    environment:
+      NODE_ENV: production
+    ports:
+      - "4040:4040"
+    networks:
+      - webnet
+  tiles:
+    # replace username/repo:tag with your name and image details
+    image: klokantech/tileserver-gl
+    ports:
+      - "8080:80"
+    volumes:
+      - "./tiles:/data"
+    networks:
+      - webnet
+  db:
+    # replace username/repo:tag with your name and image details
+    image: postgres
+    environment:
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - "./database:/var/lib/postgresql/data"
+    networks:
+      - webnet
+networks:
+  webnet:

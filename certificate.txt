@@ -1,0 +1,2 @@
+SSLCertificateFile /etc/httpd/star.le34.dk.cer
+SSLCertificateKeyFile /etc/httpd/star.le34.dk.key
