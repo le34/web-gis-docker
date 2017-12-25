@@ -1,0 +1,23 @@
+version: "3"
+services:
+  feathers:
+    image: web-gis-feathers
+    ports:
+      - "3030:3030"
+    volumes:
+      - "/Users/runetvilum/develop/GitHub/web-gis-app/mbtiles:/mbtiles"
+    networks:
+      - webnet
+  db:
+    image: postgres:9.6
+    environment:
+      POSTGRES_PASSWORD: Zxcv1234
+      POSTGRES_DB: survey
+    ports:
+      - "5432:5432"
+    volumes:
+      - "./database:/var/lib/postgresql/data"
+    networks:
+      - webnet
+networks:
+  webnet:

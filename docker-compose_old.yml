@@ -20,8 +20,6 @@ services:
       - webnet
   feathers:
     image: runetvilum/web-gis-feathers
-    environment:
-      MBTILES: /mbtiles
     ports:
       - "3030:3030"
     volumes:

@@ -3,33 +3,27 @@ services:
   app:
     image: runetvilum/web-gis-app
     environment:
-      URL_PREFIX: https://survey.le34.dk
+      URL_PREFIX: http://localhost:3000
       HOST: 0.0.0.0
-      MBTILES: /mbtiles
-      FONTS: /fonts
-      XFM: /xfm
-      STYLES: /styles
     ports:
       - "3000:3000"
     volumes:
-      - "./mbtiles:/mbtiles"
-      - "./styles:/styles"
-      - "./fonts:/fonts"
-      - "./xfm:/xfm"
+      - "/Users/runetvilum/develop/GitHub/web-gis-app/mbtiles:/mbtiles"
+      - "/Users/runetvilum/develop/GitHub/web-gis-app/styles:/styles"
+      - "/Users/runetvilum/develop/GitHub/web-gis-app/fonts:/fonts"
+      - "/Users/runetvilum/develop/GitHub/web-gis-app/xfm:/xfm"
     networks:
       - webnet
   feathers:
-    image: runetvilum/web-gis-feathers
-    environment:
-      MBTILES: /mbtiles
+    image: ruunetvilum/web-gis-feathers
     ports:
       - "3030:3030"
     volumes:
-      - "./mbtiles:/mbtiles"
+      - "/Users/runetvilum/develop/GitHub/web-gis-app/mbtiles:/mbtiles"
     networks:
       - webnet
   db:
-    image: mdillon/postgis:9.6
+    image: postgres:9.6
     environment:
       POSTGRES_PASSWORD: Zxcv1234
       POSTGRES_DB: survey
